@@ -36,11 +36,17 @@ def main():
     else:
         raise(NotImplementedError("Unsupported input file extension '%s' - it must be in %s" % (filext, allowed_fileext)))
 
+    print("Original data:")
     print(df)
 
     anonymizer = Anonymizer(args.locale)
     anonymizer.seed(args.seed)
     df_anon = anonymizer.anonymize(df)
+
+    print("")
+
+    print("Anonymized data:")
+    print(df_anon)
 
     if args.output == '':
         filename_out = short_file_name + '_anon' + file_extension

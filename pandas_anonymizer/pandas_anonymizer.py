@@ -52,7 +52,7 @@ class Anonymizer(object):
         for colname in columns_to_anonyize:
             faker_func_name = colname.lower().replace(' ', '_')
             if hasattr(self._fake, faker_func_name) and colname in columns_to_anonyize:
-                data = self._anonymize_dataframe(data, colname, faker_func_name=faker_func_name)
+                data, d_anon, d_anon_reversed = self._anonymize_dataframe(data, colname, faker_func_name=faker_func_name)
         return data
 
     def _anonymize_dataframe(self, df, colname, faker_func_name=None, f_anon=None):
@@ -80,9 +80,9 @@ class Anonymizer(object):
         """
 
         ser = df[colname]
-        ser_anon = self._anonymize_serie(ser, faker_func_name=faker_func_name)
+        ser_anon, d_anon, d_anon_reversed = self._anonymize_serie(ser, faker_func_name=faker_func_name)
         df[colname] = ser_anon
-        return df
+        return df, d_anon, d_anon_reversed
 
     def _anonymize_serie(self, ser, faker_func_name=None, f_anon=None):
         """Returns anonymized pd.Series
@@ -104,12 +104,9 @@ class Anonymizer(object):
         col_uniq = ser.unique()
         if f_anon is None:
             f_anon = lambda s: getattr(self._fake, faker_func_name)()
-        print(col_uniq)
         d_anon, d_anon_reversed = self._d_anon(col_uniq, f_anon)
-        print(d_anon)
-        print(d_anon_reversed)
         ser_anon = ser.map(d_anon)
-        return ser_anon
+        return ser_anon, d_anon, d_anon_reversed
 
 
     def _d_anon(self, a, f_anon):

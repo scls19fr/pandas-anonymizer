@@ -58,6 +58,5 @@ docs/_build/
 # PyBuilder
 target/
 
-*_origin.csv
-*_origin.xls
-*_origin.xlsx
+*_origin.*
+*_anon.*
