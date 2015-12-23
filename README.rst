@@ -13,9 +13,9 @@ pandas-anonymizer
         :alt: Documentation Status
 
 
-Some functions to anonymize data with Python Pandas
+Some functions to anonymize data with Python Pandas.
 
-* Free software: ISC license
+* Free software: BSD license
 * Documentation: https://pandas_anonymizer.readthedocs.org.
 
 Features

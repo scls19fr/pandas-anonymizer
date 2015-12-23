@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
 
-__author__ = 'Sebastien Celles'
-__email__ = 's.celles@gmail.com'
-__version__ = '0.0.1'
+from __future__ import absolute_import, division, print_function
+
+from .pandas_anonymizer import Anonymizer
